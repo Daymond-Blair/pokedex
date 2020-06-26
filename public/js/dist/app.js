@@ -1,20 +1,86 @@
-// create 2 buttons
-// $(document.createElement('div').textContent('Button1'));
-// button 1
-// when clicked, console.log('name')
+// GET REQUEST - this 'gets' a page view from the server/backend and displays it on the client/frontend through the browser
+// $(function() {
+// 	$('.btn1').on('click', function() {
+// 		var request = $.ajax({
+// 			url: 'https://jsonplaceholder.typicode.com/posts',
+// 			method: 'GET'
+// 			// data: { id: 'menuId' },
+// 			// dataType: 'html'
+// 		});
 
-// button 2
-// when hovered, counts from 1 to 25
+// 		request.done(function(msg) {
+// 			console.log(msg);
+// 		});
 
-// square that turns red once mouse enters it
+// 		request.fail(function(textStatus) {
+// 			alert('Request failed.' + textStatus);
+// 		});
+// 	});
+// });
+// POST - this posts user input into the server/database
+// $(function() {
+// 	$('.btn1').on('click', function() {
+// 		var request = $.ajax({
+// 			url: 'https://jsonplaceholder.typicode.com/posts',
+// 			method: 'POST',
+// 			data: {
+// 				title: 'title',
+// 				body:
+// 					'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime officiis harum assumenda omnis expedita quibusdam molestiae repellendus facilis pariatur voluptatem fuga quae inventore sequi id ipsam alias minima, sed cum!',
+// 				userId: 20
+// 			}
+// 			// dataType: 'html'
+// 		});
 
+// 		request.done(function(msg) {
+// 			console.log(msg);
+// 		});
+
+// 		request.fail(function(textStatus) {
+// 			alert('Request failed.' + textStatus);
+// 		});
+// 	});
+// });
+// // PUT - this acts similarly to POST but instead it updates an entire existing post - a new verb PATCH - acts like this but replaces one property or method without having to replace the entire post
+// $(function() {
+// 	$('.btn1').on('click', function() {
+// 		var request = $.ajax({
+// 			url: 'https://jsonplaceholder.typicode.com/posts',
+// 			method: 'PUT',
+// 			data: {
+// 				title: 'title',
+// 				body:
+// 					'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime officiis harum assumenda omnis expedita quibusdam molestiae repellendus facilis pariatur voluptatem fuga quae inventore sequi id ipsam alias minima, sed cum!',
+// 				userId: 30
+// 			}
+// 			// dataType: 'html'
+// 		});
+
+// 		request.done(function(msg) {
+// 			console.log(msg);
+// 		});
+
+// 		request.fail(function(textStatus) {
+// 			alert('Request failed.' + textStatus);
+// 		});
+// 	});
+// });
+// // DELETE
 $(function() {
-	
+	$('.btn1').on('click', function() {
+		var request = $.ajax({
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			method: 'DELETE'
+			// data: { id: 'menuId' },
+			// dataType: 'html'
+		});
+
+		request.done(function(msg) {
+			console.log(msg);
+		});
+
+		request.fail(function(textStatus) {
+			alert('Request failed.' + textStatus);
+		});
+	});
 });
-
-// create a div with class of box1 and a display of none as the style, with an h1 tag that says box1
-//create a button outside of the box1 that when clicked adds a class of active to box1. Now on your css file make the class active display block.
-
-//create a div with a class of box2 and add an h1 tag insdie of it that says box2. create an input text field then create a button under the input field.
-
-//Now when you click on this second button count how many letters inside of the input field then display that inside of the div with the class box2
