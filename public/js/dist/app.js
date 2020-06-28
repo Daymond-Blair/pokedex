@@ -67,16 +67,21 @@
 // });
 // // DELETE
 $(function() {
+	var pokemonName;
 	$('.btn1').on('click', function() {
+		pokemonName = $('.pokedex input[type="text"]').val();
 		var request = $.ajax({
-			url: 'https://jsonplaceholder.typicode.com/posts',
-			method: 'DELETE'
-			// data: { id: 'menuId' },
-			// dataType: 'html'
+			url: 'https://pokeapi.co/api/v2/pokemon/' + pokemonName,
+			method: 'GET'
 		});
 
-		request.done(function(msg) {
-			console.log(msg);
+		request.done(function(data) {
+			var name = data.species.name;
+			var image = data.sprites.front_default;
+			console.log('You chose ' + name + '!!!');
+			$('.poke-img').css('background-image', 'url(' + image + ')');
+			$('.pokedex input[type="text"]').val('');
+			$('.poke-name').text(name.toUpperCase());
 		});
 
 		request.fail(function(textStatus) {
