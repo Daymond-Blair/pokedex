@@ -1,71 +1,3 @@
-// GET REQUEST - this 'gets' a page view from the server/backend and displays it on the client/frontend through the browser
-// $(function() {
-// 	$('.btn1').on('click', function() {
-// 		var request = $.ajax({
-// 			url: 'https://jsonplaceholder.typicode.com/posts',
-// 			method: 'GET'
-// 			// data: { id: 'menuId' },
-// 			// dataType: 'html'
-// 		});
-
-// 		request.done(function(msg) {
-// 			console.log(msg);
-// 		});
-
-// 		request.fail(function(textStatus) {
-// 			alert('Request failed.' + textStatus);
-// 		});
-// 	});
-// });
-// POST - this posts user input into the server/database
-// $(function() {
-// 	$('.btn1').on('click', function() {
-// 		var request = $.ajax({
-// 			url: 'https://jsonplaceholder.typicode.com/posts',
-// 			method: 'POST',
-// 			data: {
-// 				title: 'title',
-// 				body:
-// 					'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime officiis harum assumenda omnis expedita quibusdam molestiae repellendus facilis pariatur voluptatem fuga quae inventore sequi id ipsam alias minima, sed cum!',
-// 				userId: 20
-// 			}
-// 			// dataType: 'html'
-// 		});
-
-// 		request.done(function(msg) {
-// 			console.log(msg);
-// 		});
-
-// 		request.fail(function(textStatus) {
-// 			alert('Request failed.' + textStatus);
-// 		});
-// 	});
-// });
-// // PUT - this acts similarly to POST but instead it updates an entire existing post - a new verb PATCH - acts like this but replaces one property or method without having to replace the entire post
-// $(function() {
-// 	$('.btn1').on('click', function() {
-// 		var request = $.ajax({
-// 			url: 'https://jsonplaceholder.typicode.com/posts',
-// 			method: 'PUT',
-// 			data: {
-// 				title: 'title',
-// 				body:
-// 					'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime officiis harum assumenda omnis expedita quibusdam molestiae repellendus facilis pariatur voluptatem fuga quae inventore sequi id ipsam alias minima, sed cum!',
-// 				userId: 30
-// 			}
-// 			// dataType: 'html'
-// 		});
-
-// 		request.done(function(msg) {
-// 			console.log(msg);
-// 		});
-
-// 		request.fail(function(textStatus) {
-// 			alert('Request failed.' + textStatus);
-// 		});
-// 	});
-// });
-// // DELETE
 $(function() {
 	var pokemonName;
 	$('.btn1').on('click', function() {
@@ -78,10 +10,35 @@ $(function() {
 		request.done(function(data) {
 			var name = data.species.name;
 			var image = data.sprites.front_default;
-			console.log('You chose ' + name + '!!!');
+			var id = data.id;
+			var pokeNum = id.toString();
+			// console.log('You chose ' + name + '!!!');
+			if (data.types.length == 2) {
+				var typeOne = data.types[0].type.name;
+				var typeTwo = data.types[1].type.name;
+				$('.primary-type').text(
+					`${typeOne.charAt(0).toUpperCase() + typeOne.slice(1)}/`
+				);
+				$('.secondary-type').text(
+					`${typeTwo.charAt(0).toUpperCase() + typeTwo.slice(1)}`
+				);
+
+				typeTwo = undefined;
+			} else {
+				var typeOne = data.types[0].type.name;
+				var typeTwo = '';
+				$('.primary-type').text(
+					`${typeOne.charAt(0).toUpperCase() + typeOne.slice(1)}`
+				);
+				$('.secondary-type').text(`${typeTwo}`);
+			}
+			console.log(data);
+			console.log(name, image, id, typeOne, typeTwo);
+			console.log(`You chose ${name}!!! The id is ${id}`);
 			$('.poke-img').css('background-image', 'url(' + image + ')');
 			$('.pokedex input[type="text"]').val('');
-			$('.poke-name').text(name.toUpperCase());
+			$('.poke-name').text(name.charAt(0).toUpperCase() + name.slice(1));
+			$('.poke-id').text(`#${pokeNum.padStart(3, '0')}`);
 		});
 
 		request.fail(function(textStatus) {
